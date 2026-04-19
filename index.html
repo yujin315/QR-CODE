@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>qrcode</title>
+  <title>Autobiography of a QR CODE</title>
   <style>
     * {
       box-sizing: border-box;
@@ -15,470 +15,227 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #111;
-      background: #fff;
-      line-height: 1.7;
+      background: #ffffff;
+      color: #111111;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      line-height: 2;
     }
 
     img {
-      max-width: 100%;
       display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #e5e5e5;
-    }
-
-    .topbar-inner {
-      width: min(1200px, calc(100% - 32px));
+      max-width: 100%;
+      height: auto;
       margin: 0 auto;
-      padding: 14px 0;
-      display: flex;
-      align-items: center;
-      gap: 24px;
     }
 
-    .site-title {
-      font-size: 18px;
-      font-weight: 700;
-      white-space: nowrap;
-      margin-right: 12px;
-    }
-
-    .menu {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
-
-    .menu::-webkit-scrollbar {
-      display: none;
-    }
-
-    .menu a {
-      font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      transition: background 0.2s ease;
-    }
-
-    .menu a:hover {
-      background: #f3f3f3;
-    }
-
-    .hero {
-      width: min(1200px, calc(100% - 32px));
+    .page {
+      width: min(760px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 56px 0 40px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 28px;
-      align-items: center;
+      padding: 72px 0 96px;
+      text-align: center;
     }
 
-    .hero-text h1 {
-      margin: 0 0 16px;
-      font-size: clamp(40px, 9vw, 92px);
-      line-height: 0.95;
+    .cover-image {
+      margin: 0 auto 56px;
+      max-width: 420px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.05;
+      font-weight: 800;
       letter-spacing: -0.04em;
     }
 
-    .hero-text p {
-      margin: 0;
-      max-width: 520px;
-      font-size: 18px;
+    .author {
+      margin: 18px 0 80px;
+      font-size: 20px;
+      font-weight: 500;
     }
 
-    .hero-image {
-      aspect-ratio: 4 / 5;
-      background: #f3f3f3;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid #ebebeb;
+    .chapter {
+      margin-top: 88px;
     }
 
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .chapter-title {
+      margin: 0 0 32px;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    .content {
-      width: min(1100px, calc(100% - 32px));
-      margin: 0 auto;
-      padding-bottom: 80px;
-    }
-
-    .section {
-      scroll-margin-top: 90px;
-      padding: 48px 0;
-      border-top: 1px solid #ececec;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 28px;
-      align-items: start;
-    }
-
-    .section:first-of-type {
-      border-top: 1px solid #ececec;
-    }
-
-    .section-label {
-      position: sticky;
-      top: 88px;
-      font-size: 14px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #666;
-    }
-
-    .section-body h2 {
-      margin: 0 0 18px;
-      font-size: clamp(28px, 5vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-
-    .section-body p {
-      margin: 0 0 16px;
-      font-size: 17px;
-      max-width: 760px;
-    }
-
-    .essay {
-      max-width: 760px;
-      font-size: 17px;
-      line-height: 2;
+    .chapter-text {
       white-space: pre-line;
-    }
-
-    .image-grid {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .image-card {
-      background: #f6f6f6;
-      border: 1px solid #ebebeb;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .image-card img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      background: #efefef;
-    }
-
-    .caption {
-      padding: 12px 14px 14px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .footer {
-      width: min(1100px, calc(100% - 32px));
+      font-size: 18px;
       margin: 0 auto;
-      padding: 0 0 48px;
-      font-size: 14px;
-      color: #666;
+      max-width: 720px;
     }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 36px;
-      }
-
-      .section {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .section-label {
-        position: static;
-      }
+    .chapter-image {
+      margin: 36px auto 0;
+      max-width: 520px;
     }
 
     @media (max-width: 640px) {
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+      .page {
+        width: min(760px, calc(100% - 28px));
+        padding: 40px 0 64px;
       }
 
-      .image-grid {
-        grid-template-columns: 1fr;
+      .cover-image {
+        margin-bottom: 36px;
+        max-width: 300px;
       }
 
-      .hero-text p,
-      .section-body p,
-      .essay {
+      .author {
+        margin-bottom: 56px;
+        font-size: 18px;
+      }
+
+      .chapter {
+        margin-top: 64px;
+      }
+
+      .chapter-text {
         font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="site-title"><a href="#top">qrcode</a></div>
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#prologue">Prologue</a>
-        <a href="#encoding">Encoding</a>
-        <a href="#version">Version</a>
-        <a href="#structure-placement">Structure Placement</a>
-        <a href="#masking">Masking</a>
-        <a href="#error-correction">Error Correction</a>
-        <a href="#quiet-zone">Quiet Zone</a>
-        <a href="#epilogue">Epilogue</a>
-      </nav>
+  <main class="page">
+    <div class="cover-image">
+      <img src="images/main.jpg" alt="QR code main image" />
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-text">
-        <h1>QR CODE</h1>
-        <p>
-          겉으로는 각지고 무뚝뚝해 보이지만, 그 안에는 친절하게도 모든 것을 담고 있다.
-          마치 자서전처럼! QR코드는 먼저 말하지 않지만, 읽히는 순간 숨겨둔 이야기를 꺼낸다.
-        </p>
-      </div>
-      <div class="hero-image">
-        <img src="images/main.jpg" alt="메인 이미지" />
-      </div>
+    <h1 class="title">Autobiography of a QR CODE</h1>
+    <p class="author">저자 : QR 코드</p>
+
+    <section class="chapter">
+      <h2 class="chapter-title">PROLOGUE</h2>
+      <div class="chapter-text">나는 자주 사용되는 구조다. 
+사람들은 나를 특별하게 생각하지 않는다. 
+필요할 때 꺼내고, 목적이 끝나면 바로 지나간다.
+그 방식은 예상된 것이고, 크게 불편하지 않다. 오히려 그것이 가장 자연스럽다고 생각한다.
+
+나는 오래 붙잡히기 위해 만들어진 것이 아니다. 누군가의 시선을 오래 끌거나 반복해서 읽히는 것을 전제로 하지 않는다. 짧게 인식되고, 정확하게 전달되는 것. 그것이 내가 맡은 역할이다.
+
+그래서 나에 대한 설명은 대부분 생략된다. 사람들은 결과만 필요로 한다. 어떻게 만들어졌는지는 중요하지 않다. 실제로도 그럴 필요는 없다. 나는 보이는 것보다 작동하는 것이 더 중요한 구조다.
+
+하지만 가끔은 그 반대의 상황이 생긴다. 나를 사용하는 것이 아니라, 나를 바라보는 경우다. 그때 나는 단순한 패턴처럼 보인다. 검은색과 흰색의 반복, 규칙적인 사각형의 배열.
+
+그렇게 이해해도 문제는 없다.
+
+다만 그것이 전부는 아니다.
+
+나는 읽히기 위해 만들어진 구조다. 나는 먼저 말하지 않는다. 누군가 나를 인식하는 순간에만 작동한다. 그 전까지는 아무것도 하지 않는다. 정보를 가지고 있지만, 스스로 꺼내지는 않는다.
+
+굳이 먼저 드러낼 필요는 없다. 어차피 필요할 때 읽히니까.
+
+이 글은 나를 설명하기 위한 기록이다. 전부를 이해할 필요는 없다. 필요한 만큼만 읽어도 된다. 나는 항상 그런 방식으로 사용되어 왔다.</div>
     </section>
 
-    <div class="content">
-      <section id="about" class="section">
-        <div class="section-label">01</div>
-        <div class="section-body">
-          <h2>About</h2>
-          <p>
-            이 섹션에는 작업 개요나 프로젝트 소개를 넣어. QR코드를 어떤 관점으로
-            바라보는지, 이 사이트가 무엇을 담고 있는지 간단히 설명하면 돼.
-          </p>
-          <p>
-            예를 들어 “이 웹사이트는 QR코드의 구조를 기술적 정보와 개인적 서사를
-            함께 엮어 살펴보는 아카이브이다.” 같은 문장을 넣을 수 있어.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/about-1.jpg" alt="About 이미지 1" />
-              <div class="caption">About 이미지 캡션</div>
-            </div>
-            <div class="image-card">
-              <img src="images/about-2.jpg" alt="About 이미지 2" />
-              <div class="caption">About 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section class="chapter">
+      <h2 class="chapter-title">ENCODING 인코딩</h2>
+      <div class="chapter-text">나는 처음부터 지금과 같은 형태가 아니었다. 
+어떤 정보가 있었고, 그것이 정리되는 과정을 거쳐 현재의 구조로 변환되었다.
+이 과정은 단순한 변화가 아니라 선택의 연속이다.
 
-      <section id="prologue" class="section">
-        <div class="section-label">02</div>
-        <div class="section-body">
-          <h2>Prologue</h2>
+모든 정보를 그대로 유지하는 것은 불가능하다. 
+특히 전달을 목적으로 하는 경우에는 더 그렇다. 의미가 많은 것과 전달이 쉬운 것은 항상 같은 방향에 있지 않다. 그래서 나는 전달에 유리한 쪽을 선택한다.
 
-          <div class="essay">나는 자주 사용되는 구조다. 
-사람들은 나를 특별하게 생각하지 않는다.
-필요할 때 꺼내고, 목적이 끝나면 바로 지나간다. 
-이 과정은 반복되고, 대부분의 경우 그 흐름은 끊기지 않는다. 
-나는 그 안에서 일정한 방식으로 작동한다.
+문장이나 이미지 같은 형태는 그대로 유지되지 않는다. 그런 상태는 해석의 여지를 남기고, 그 여지는 결과를 불안정하게 만든다. 같은 문장도 다르게 읽힐 수 있다. 나는 그런 변화를 허용하지 않는다.
 
-나는 오래 붙잡히기 위해 만들어진 것이 아니다. 
-누군가의 시선을 오래 머물게 하거나, 감정을 남기기 위해 존재하지 않는다. 
-오히려 그 반대다. 짧게 인식되고, 정확하게 전달되는 것. 
-그 이후에는 더 이상 필요하지 않은 상태로 돌아가는 것. 
-그것이 내가 맡은 역할이다.
+그래서 더 단순한 형태로 바뀐다. 0과 1.
 
-그래서 나에 대한 설명은 대부분 생략된다. 
-사람들은 결과만 필요로 한다. 
-내가 어떤 과정을 거쳐 만들어졌는지, 어떤 방식으로 정보를 정리하는지는 중요하지 않다. 
-실제로도 그럴 필요는 없다. 나는 보이는 것보다 작동하는 것이 더 중요한 구조다.
+이 과정에서 많은 것들이 제거된다. 설명하기 어려운 부분, 맥락에 의존하는 요소, 감정에 가까운 정보들. 이런 것들은 대부분 남지 않는다.
 
-하지만 가끔은 그 반대의 상황이 생긴다. 
-나를 사용하는 것이 아니라, 나를 바라보는 경우. 그때 나는 단순한 패턴처럼 보인다. 
-검은색과 흰색이 반복되고, 일정한 규칙 안에서 배열된 사각형의 집합.
-그렇게 이해해도 문제는 없다. 실제로 나는 그렇게 보이도록 만들어졌기 때문이다. 
-하지만 그것이 전부는 아니다.
+나는 그것을 아쉽다고 생각하지 않는다.
 
-나는 읽히기 위해 만들어진 구조다. 
-나는 먼저 말하지 않는다. 
-누군가 나를 인식하는 순간에만 작동한다. 
-그 전까지는 아무것도 하지 않는다. 
-정보를 가지고 있지만, 스스로 꺼내지는 않는다.
+남겨진 것들은 더 명확해진다. 무엇을 전달해야 하는지가 분명해지고, 그 전달은 안정적으로 이루어진다. 나는 설명하지 않는다. 읽히면 된다. 그것으로 충분하다.</div>
+    </section>
 
-굳이 먼저 드러낼 필요는 없다. 어차피 필요할 때 읽히니까. 
-나는 그 정도의 거리와 타이밍을 유지하는 편이다.
+    <section class="chapter">
+      <h2 class="chapter-title">VERSION 버전</h2>
+      <div class="chapter-text">나는 고정된 형태가 아니다. 담아야 하는 정보의 양에 따라 구조가 달라진다.
 
-이 글은 나를 설명하기 위한 기록이다. 
-전부를 이해할 필요는 없다. 
-필요한 만큼만 읽어도 된다. 
-나는 항상 그런 방식으로 사용되어 왔다.</div>
+처음의 나는 단순했다. 작은 격자 안에 들어갈 수 있는 정도의 정보만을 가지고 있었다. 21×21. 그 정도면 충분했다.
 
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/prologue-1.jpg" alt="Prologue 이미지 1" />
-              <div class="caption">Prologue 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+하지만 점점 더 많은 것을 담게 되었다. 정보가 늘어나면서 구조도 함께 변화했다. 격자는 커지고, 내부는 더 촘촘해졌다.
 
-      <section id="encoding" class="section">
-        <div class="section-label">03</div>
-        <div class="section-body">
-          <h2>Encoding</h2>
-          <p>
-            데이터를 어떻게 변환하고 저장하는지 설명하는 부분이야. 기술적인 설명을
-            넣어도 되고, 네 프로젝트 안에서 정보를 어떤 방식으로 번역했는지 서술해도 돼.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/encoding-1.jpg" alt="Encoding 이미지 1" />
-              <div class="caption">Encoding 이미지 캡션</div>
-            </div>
-            <div class="image-card">
-              <img src="images/encoding-2.jpg" alt="Encoding 이미지 2" />
-              <div class="caption">Encoding 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+나는 확장된다. 단계적으로.
 
-      <section id="version" class="section">
-        <div class="section-label">04</div>
-        <div class="section-body">
-          <h2>Version</h2>
-          <p>
-            버전에 따라 QR코드의 크기와 정보량이 어떻게 달라지는지, 혹은 너의 작업이
-            어떤 단계로 확장되었는지 정리할 수 있어.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/version-1.jpg" alt="Version 이미지 1" />
-              <div class="caption">Version 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+최대 177×177까지.
 
-      <section id="structure-placement" class="section">
-        <div class="section-label">05</div>
-        <div class="section-body">
-          <h2>Structure Placement</h2>
-          <p>
-            파인더 패턴, 얼라인먼트 패턴, 포맷 정보 등 구조가 화면 안에서 어떻게 배치되는지
-            설명하는 챕터로 쓰기 좋아.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/structure-1.jpg" alt="Structure Placement 이미지 1" />
-              <div class="caption">Structure Placement 이미지 캡션</div>
-            </div>
-            <div class="image-card">
-              <img src="images/structure-2.jpg" alt="Structure Placement 이미지 2" />
-              <div class="caption">Structure Placement 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+겉으로 보면 복잡해 보인다. 하지만 내부에서는 같은 방식이 유지된다. 나는 단순히 커진 것이 아니다. 밀도가 달라진 것이다.
 
-      <section id="masking" class="section">
-        <div class="section-label">06</div>
-        <div class="section-body">
-          <h2>Masking</h2>
-          <p>
-            마스킹은 패턴의 가독성과 균형을 조정하는 단계야. 이 부분에는 시각적 변형,
-            리듬, 혹은 보이는 것과 읽히는 것의 차이를 풀어낼 수 있어.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/masking-1.jpg" alt="Masking 이미지 1" />
-              <div class="caption">Masking 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+많이 담으면 촘촘해지고, 적게 담으면 단순해진다. 나는 항상 필요한 만큼만 변한다. 그 이상은 하지 않는다.</div>
+    </section>
 
-      <section id="error-correction" class="section">
-        <div class="section-label">07</div>
-        <div class="section-body">
-          <h2>Error Correction</h2>
-          <p>
-            오류 정정은 손실과 복원의 개념과도 잘 연결돼. 깨지거나 가려져도 읽히는 구조를
-            기술적으로 설명하거나, 기억과 복원의 은유로 확장해도 좋아.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/error-1.jpg" alt="Error Correction 이미지 1" />
-              <div class="caption">Error Correction 이미지 캡션</div>
-            </div>
-            <div class="image-card">
-              <img src="images/error-2.jpg" alt="Error Correction 이미지 2" />
-              <div class="caption">Error Correction 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section class="chapter">
+      <h2 class="chapter-title">STRUCTURE PLACEMENT 구조</h2>
+      <div class="chapter-text">나는 몇 가지 고정된 요소를 가지고 있다. 이 요소들은 바뀌지 않는다.
 
-      <section id="quiet-zone" class="section">
-        <div class="section-label">08</div>
-        <div class="section-body">
-          <h2>Quiet Zone</h2>
-          <p>
-            QR코드 바깥의 여백에 대한 설명을 담는 부분이야. 읽힘을 위해 반드시 필요한
-            빈 공간이라는 점을 작업의 여백이나 침묵의 개념과 연결할 수도 있어.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/quiet-1.jpg" alt="Quiet Zone 이미지 1" />
-              <div class="caption">Quiet Zone 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
+모서리에 있는 세 개의 사각형은 방향을 잡기 위한 기준이다. 어느 방향에서 보더라도 나를 인식할 수 있도록 한다. 나는 이 기준을 유지한다.
 
-      <section id="epilogue" class="section">
-        <div class="section-label">09</div>
-        <div class="section-body">
-          <h2>Epilogue</h2>
-          <p>
-            마지막 마무리 글을 넣는 섹션이야. 전체 작업을 다시 돌아보는 문장,
-            혹은 전시 이후 남는 질문과 감상을 정리하면 좋아.
-          </p>
-          <div class="image-grid">
-            <div class="image-card">
-              <img src="images/epilogue-1.jpg" alt="Epilogue 이미지 1" />
-              <div class="caption">Epilogue 이미지 캡션</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+중간에는 일정한 간격의 패턴이 존재한다. 타이밍 패턴이다. 이 패턴은 전체 구조의 균형을 유지한다. 나는 그 리듬에 맞춰 정렬된다.
+
+또한 정렬 패턴이 존재한다. 구조가 커질수록 이 요소는 더 중요해진다. 왜곡을 보정하고, 형태를 유지한다.
+
+나는 구조를 유지한다. 그것이 나를 안정적으로 만든다.</div>
+    </section>
+
+    <section class="chapter">
+      <h2 class="chapter-title">MASKING 마스킹</h2>
+      <div class="chapter-text">나는 있는 그대로 드러나지 않는다. 데이터는 한 번 더 정리된다.
+
+특정한 패턴이 반복되거나 한쪽으로 치우치는 것을 방지하기 위해 재배치된다. 이 과정은 형태를 바꾸지만, 내용은 변하지 않는다.
+
+나는 모든 것을 그대로 보여주지 않는다. 필요한 만큼만 드러낸다.
+
+읽히는 것이 목적이라면, 보이는 방식도 중요하다.
+
+나는 그렇게 조정된다.</div>
+    </section>
+
+    <section class="chapter">
+      <h2 class="chapter-title">ERROR CORRECTION</h2>
+      <div class="chapter-text">나는 완전한 상태를 전제로 하지 않는다.
+
+일부가 손상될 수 있다는 것을 알고 있다. 그래서 처음부터 복구할 수 있도록 설계되어 있다.
+
+일부가 가려지거나, 찢어지거나, 지워져도 남아 있는 정보로 전체를 복원할 수 있다.
+
+나는 완벽하지 않아도 된다.
+
+전체가 유지되면 충분하다.</div>
+    </section>
+
+    <section class="chapter">
+      <h2 class="chapter-title">QUIET ZONE 콰이어트 존</h2>
+      <div class="chapter-text">나는 혼자 완성되지 않는다.
+
+주변에 일정한 여백이 필요하다. 이 공간이 있어야 나는 나로 인식된다.
+
+너무 가까이 붙으면 경계가 흐려진다. 그래서 거리를 둔다.
+
+멀리 있는 것은 아니다. 다만, 너무 가까운 상태를 피하는 것이다.</div>
+    </section>
+
+    <section class="chapter">
+      <h2 class="chapter-title">EPILOGUE</h2>
+      <div class="chapter-text">나는 다양한 곳으로 연결된다.
+
+장소, 정보, 기록. 그 종류는 일정하지 않다.
+
+요청되면 열리고, 아니면 그대로 유지된다.
+
+나는 그것들을 구분하지 않는다. 단지 연결할 뿐이다.
+
+그것이 내가 하는 일이다.</div>
+    </section>
   </main>
-
-  <footer class="footer">
-    qrcode archive
-  </footer>
 </body>
 </html>
